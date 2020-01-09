@@ -10,10 +10,11 @@ db.sqlite
 /example-skills/
 /screenshots/
 /*.js
-.sample.env
+sample.env
 .env
 .editorconfig
 .travis.yml
 webpack.config.babel.js
 yarn.lock
 /bin/
+
