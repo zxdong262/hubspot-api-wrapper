@@ -9,6 +9,10 @@ Simple Hubspot api wrapper
 
 ## Use
 
+```bash
+npm i hubspot-client
+```
+
 ```js
 import HubSpot from 'hubspot-client'
 
