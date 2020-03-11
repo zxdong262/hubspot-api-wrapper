@@ -26,6 +26,10 @@ describe('hubspot api', () => {
       let r = await hs.get('/contacts/v1/lists/recently_updated/contacts/recent')
       r = r.data
       expect(_.isArray(r.contacts)).toBe(true)
+      r = await hs.post('/contacts/v1/contact', {
+        dd: 'sdf'
+      })
+      console.log(r)
       done()
     })
     app.listen(process.env.PORT, 'localhost', () => {

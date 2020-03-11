@@ -177,13 +177,17 @@ class HubSpot extends EventEmitter {
   }
 
   request (config) {
-    let uri = URI(config.url)
+    let urls = config.url.split('?')
+    let p = urls[0]
+    let q = urls[1] || ''
+    let uri = URI(p)
     if (uri.hostname() === '') {
-      uri = URI(this.server).path(config.url)
+      uri = URI(this.server).path(p)
     }
+    let url = q ? uri.toString() + '?' + q : uri.toString()
     return this._axios.request({
       ...config,
-      url: uri.toString(),
+      url,
       headers: this._patchHeaders(config.headers)
     })
   }
