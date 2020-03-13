@@ -48,15 +48,12 @@ class HubSpot extends EventEmitter {
         if (e.response) {
           if ((e.response.data.errors || []).some(error => /\btoken\b/i.test(error.message))) { // access token expired
             try {
-              console.log('e.response.data:', e.response.data)
-              console.log('old token', this.token())
+              console.log('on expire e.response.data:', e.response.data)
               await this.refresh()
               if (onTokenChange) {
                 await onTokenChange(this.token())
               }
-              console.log('new token', this.token())
               config.headers = { ...config.headers, ...this._bearerAuthorizationHeader() }
-              console.log('new header', config.headers)
               return await request(config)
             } catch (e) {
               if (e.response) {
@@ -100,7 +97,7 @@ class HubSpot extends EventEmitter {
         refreshToken: this._token.refresh_token
       })
     }
-    const r = await this.refreshRequest()
+    const r = await this.refreshRequest
     this.token(r)
     this.refreshRequest = undefined
   }
