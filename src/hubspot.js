@@ -27,7 +27,8 @@ class HubSpot extends EventEmitter {
     userInfo = {},
     scope = '',
     appServer = 'https://app.hubspot.com',
-    axiosInstance
+    axiosInstance,
+    onTokenChange
   }) {
     super()
     this.clientId = clientId
@@ -49,6 +50,9 @@ class HubSpot extends EventEmitter {
             try {
               console.log(e.response.data)
               await this.refresh()
+              if (onTokenChange) {
+                onTokenChange(this.token())
+              }
               config.headers = { ...config.headers, ...this._bearerAuthorizationHeader() }
               return await request(config)
             } catch (e) {

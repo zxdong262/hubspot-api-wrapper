@@ -1,6 +1,6 @@
 {
   "name": "hubspot-client",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Simple JavaScript wrapper for RingCentral Engage API.",
   "author": "ZHAO Xudong <zxdong@gmail.com>",
   "license": "MIT",
