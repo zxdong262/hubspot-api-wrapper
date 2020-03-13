@@ -48,7 +48,7 @@ class HubSpot extends EventEmitter {
         if (e.response) {
           if ((e.response.data.errors || []).some(error => /\btoken\b/i.test(error.message))) { // access token expired
             try {
-              console.log(e.response.data)
+              console.log('e.response.data:', e.response.data)
               await this.refresh()
               if (onTokenChange) {
                 await onTokenChange(this.token())
