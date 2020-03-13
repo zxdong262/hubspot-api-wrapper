@@ -51,7 +51,7 @@ class HubSpot extends EventEmitter {
               console.log(e.response.data)
               await this.refresh()
               if (onTokenChange) {
-                onTokenChange(this.token())
+                await onTokenChange(this.token())
               }
               config.headers = { ...config.headers, ...this._bearerAuthorizationHeader() }
               return await request(config)
