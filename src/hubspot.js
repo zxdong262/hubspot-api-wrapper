@@ -40,22 +40,12 @@ class HubSpot extends EventEmitter {
     this._token = token
     this._axios = axiosInstance || axios.create()
     const request = this._axios.request.bind(this._axios)
-    this._axios._request = async config => { // do not try to refresh token
-      try {
-        return await request(config)
-      } catch (e) {
-        if (e.response) {
-          throw new HTTPError(e.response.status, e.response.statusText, e.response.data, e.response.config)
-        }
-        throw e
-      }
-    }
     this._axios.request = async config => { // try to refresh token if necessary
       try {
         return await request(config)
       } catch (e) {
         if (e.response) {
-          if ((e.response.data.errors || []).some(error => /\expired\b/i.test(error.message))) { // access token expired
+          if ((e.response.data.errors || []).some(error => /\btoken\b/i.test(error.message))) { // access token expired
             try {
               console.log(e.response.data)
               await this.refresh()
@@ -69,8 +59,9 @@ class HubSpot extends EventEmitter {
             }
           }
           throw new HTTPError(e.response.status, e.response.statusText, e.response.data, e.response.config)
+        } else {
+          throw e
         }
-        throw e
       }
     }
   }
