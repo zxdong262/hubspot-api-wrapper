@@ -22,14 +22,14 @@ describe('hubspot api', () => {
       await hs.authorize({ code })
       console.log(hs)
       expect(_.isPlainObject(hs.token())).toBe(true)
-      expect(_.isNumber(hs.userInfo.id)).toBe(true)
+      expect(_.isNumber(hs.userInfo.user_id)).toBe(true)
       let r = await hs.get('/contacts/v1/lists/recently_updated/contacts/recent')
       r = r.data
       expect(_.isArray(r.contacts)).toBe(true)
-      r = await hs.post('/contacts/v1/contact', {
-        dd: 'sdf'
-      })
-      console.log(r)
+      // r = await hs.post('/contacts/v1/contact', {
+      //   dd: 'sdf'
+      // })
+      // console.log(r)
       done()
     })
     app.listen(process.env.PORT, 'localhost', () => {

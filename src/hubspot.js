@@ -61,8 +61,9 @@ class HubSpot extends EventEmitter {
               }
               throw e
             }
+          } else {
+            throw new HTTPError(e.response.status, e.response.statusText, e.response.data, e.response.config)
           }
-          throw new HTTPError(e.response.status, e.response.statusText, e.response.data, e.response.config)
         } else {
           throw e
         }
@@ -160,8 +161,14 @@ class HubSpot extends EventEmitter {
     this.token(undefined)
   }
 
+  parseUrl (uri, pth) {
+    const u = URI(uri)
+    const p = URI.joinPaths(u, pth)
+    return u.path(p)
+  }
+
   authorizeUri (options = {}) {
-    return URI(this.appServer).path('/oauth/authorize')
+    return this.parseUrl(this.appServer, '/oauth/authorize')
       .search({
         redirect_uri: this.redirectUri,
         client_id: this.clientId,
@@ -177,7 +184,7 @@ class HubSpot extends EventEmitter {
     let q = urls[1] || ''
     let uri = URI(p)
     if (uri.hostname() === '') {
-      uri = URI(this.server).path(p)
+      uri = this.parseUrl(this.server, p)
     }
     let url = q ? uri.toString() + '?' + q : uri.toString()
     return this._axios.request({
