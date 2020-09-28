@@ -1,7 +1,7 @@
 {
   "name": "hubspot-client",
-  "version": "0.2.9",
-  "description": "Simple JavaScript wrapper for RingCentral Engage API.",
+  "version": "0.2.10",
+  "description": "Simple JavaScript wrapper for HubSpot API.",
   "author": "ZHAO Xudong <zxdong@gmail.com>",
   "license": "MIT",
   "main": "dist/hubspot.js",
@@ -58,7 +58,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zxdong262/hubspot-api-wrappers.git"
+    "url": "git+https://github.com/zxdong262/hubspot-api-wrapper.git"
   },
   "keywords": [
     "HubSpot",
@@ -67,7 +67,7 @@
     "js"
   ],
   "bugs": {
-    "url": "https://github.com/zxdong262/hubspot-api-wrappers/issues"
+    "url": "https://github.com/zxdong262/hubspot-api-wrapper/issues"
   },
-  "homepage": "https://github.com/zxdong262/hubspot-api-wrappers#readme"
+  "homepage": "https://github.com/zxdong262/hubspot-api-wrapper#readme"
 }
