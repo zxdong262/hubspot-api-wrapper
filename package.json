@@ -12,7 +12,7 @@
     "prepublishOnly": "npm run release"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.2",
     "urijs": "^1.19.1"
   },
   "devDependencies": {
