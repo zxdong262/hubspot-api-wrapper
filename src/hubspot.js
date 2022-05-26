@@ -46,24 +46,7 @@ class HubSpot extends EventEmitter {
         return await request(config)
       } catch (e) {
         if (e.response) {
-          if ((e.response.data.errors || []).some(error => /\btoken\b/i.test(error.message))) { // access token expired
-            try {
-              console.log('on expire e.response.data:', e.response.data)
-              await this.refresh()
-              if (onTokenChange) {
-                await onTokenChange(this.token())
-              }
-              config.headers = { ...config.headers, ...this._bearerAuthorizationHeader() }
-              return await request(config)
-            } catch (e) {
-              if (e.response) {
-                throw new HTTPError(e.response.status, e.response.statusText, e.response.data, e.response.config)
-              }
-              throw e
-            }
-          } else {
-            throw new HTTPError(e.response.status, e.response.statusText, e.response.data, e.response.config)
-          }
+          throw new HTTPError(e.response.status, e.response.statusText, e.response.data, e.response.config)
         } else {
           throw e
         }

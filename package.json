@@ -1,6 +1,6 @@
 {
   "name": "hubspot-client",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "description": "Simple JavaScript wrapper for HubSpot API.",
   "author": "ZHAO Xudong <zxdong@gmail.com>",
   "license": "MIT",
